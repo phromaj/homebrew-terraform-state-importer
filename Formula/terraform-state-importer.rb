@@ -4,28 +4,28 @@
 class TerraformStateImporter < Formula
   desc "Tool for migrating Azure workloads to Terraform by analyzing resources and generating import blocks"
   homepage "https://github.com/Azure/terraform-state-importer"
-  version "0.1.2"
+  version "0.1.3"
   license "MIT"
 
   on_macos do
     on_intel do
       url "https://github.com/Azure/terraform-state-importer/releases/download/#{version}/terraform-state-importer_#{version}_darwin_amd64.tar.gz"
-      sha256 "48a44532c9a7f55587a4b3e0d5df4aaebd5484d229e89d208ede387fa2fe356f"
+      sha256 "2d7a11b16593108158511e00d629fa42c0c7fd9e51ed8d2eb73bd9e3943de344"
     end
     on_arm do
       url "https://github.com/Azure/terraform-state-importer/releases/download/#{version}/terraform-state-importer_#{version}_darwin_arm64.tar.gz"
-      sha256 "623757afe24f270889759a181f2cd6a279911dce718cd7ef1d61620575e7cc30"
+      sha256 "4bd1f258b1261039787904d5c1536bc52023a50fdf8a5991ca2c08dce16ab5b9"
     end
   end
 
   on_linux do
     on_intel do
       url "https://github.com/Azure/terraform-state-importer/releases/download/#{version}/terraform-state-importer_#{version}_linux_amd64.tar.gz"
-      sha256 "67a4eb4e6e1ed98826967ee7fb41aa0f3f68e2057596a0c65c1da9cf0fe51778"
+      sha256 "f2361a0ff93d5a639469cbf82431cc35e722c34e53e068e0ae7614a38d9c12e2"
     end
     on_arm do
       url "https://github.com/Azure/terraform-state-importer/releases/download/#{version}/terraform-state-importer_#{version}_linux_arm64.tar.gz"
-      sha256 "d683e4004534f3dce612366883270533b8b64b72dcd3cd19bf3536d114b0bd18"
+      sha256 "ed283048419e902254d24d47a70bcd1f15eea6e7b81ac8b9e7b1df14bab1bb89"
     end
   end
 
