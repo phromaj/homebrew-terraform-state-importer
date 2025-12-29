@@ -15,7 +15,7 @@ if [ -n "${GITHUB_TOKEN:-}" ]; then
   auth_header=(-H "Authorization: Bearer ${GITHUB_TOKEN}")
 fi
 
-latest_tag=$(curl -fsSL "${auth_header[@]}" "https://api.github.com/repos/${OWNER}/${REPO}/releases/latest" | jq -r '.tag_name')
+latest_tag=$(curl -fsSL --retry 3 --retry-delay 5 "${auth_header[@]}" "https://api.github.com/repos/${OWNER}/${REPO}/releases/latest" | jq -r '.tag_name')
 if [ -z "$latest_tag" ] || [ "$latest_tag" = "null" ]; then
   echo "Unable to determine latest release tag" >&2
   exit 1
@@ -63,7 +63,7 @@ sha256_file() {
 for platform in darwin_amd64 darwin_arm64 linux_amd64 linux_arm64; do
   filename="terraform-state-importer_${version}_${platform}.tar.gz"
   url="https://github.com/${OWNER}/${REPO}/releases/download/${latest_tag}/${filename}"
-  curl -fsSL "${auth_header[@]}" "$url" -o "$tmpdir/$filename"
+  curl -fsSL --retry 3 --retry-delay 5 "${auth_header[@]}" "$url" -o "$tmpdir/$filename"
   sha=$(sha256_file "$tmpdir/$filename")
   case "$platform" in
     darwin_amd64) SHA_DARWIN_AMD64="$sha" ;;
